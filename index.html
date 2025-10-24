@@ -1,0 +1,309 @@
+<!DOCTYPE html> 
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Souffle Infini</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;1,500&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'EB Garamond', serif;
+    background-color: #F8F7F2;
+    color: #5D4037;
+    font-size: 1.3em;
+    line-height: 1.9;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  #poem-container {
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10vh 0;
+    text-align: center;
+  }
+
+  .poem-line {
+    display: block;
+    margin-bottom: 0.8em;
+    opacity: 0.98;
+    transition: opacity 3s ease-in-out;
+    animation: breathe 6s ease-in-out infinite alternate;
+  }
+
+  @keyframes breathe {
+    0% { opacity: 0.96; }
+    50% { opacity: 1; }
+    100% { opacity: 0.96; }
+  }
+
+  #fade-top, #fade-bottom {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 15vh;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  #fade-top {
+    top: 0;
+    background: linear-gradient(to bottom, #F8F7F2 0%, rgba(248,247,242,0) 100%);
+  }
+
+  #fade-bottom {
+    bottom: 0;
+    background: linear-gradient(to top, #F8F7F2 0%, rgba(248,247,242,0) 100%);
+  }
+
+  #controls {
+    position: fixed;
+    bottom: 2vh;
+    right: 3vw;
+    background: rgba(93, 64, 55, 0.12);
+    backdrop-filter: blur(4px);
+    border-radius: 1em;
+    padding: 0.8em 1.2em;
+    color: #5D4037;
+    font-size: 1em;
+    z-index: 5;
+    font-family: 'EB Garamond', serif;
+    transition: opacity 1s ease;
+  }
+
+  #controls.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  label {
+    display: block;
+    cursor: pointer;
+    margin: 0.2em 0;
+  }
+
+  #speedControl {
+    width: 100%;
+    margin-top: 0.6em;
+  }
+
+  .no-cursor {
+    cursor: none;
+  }
+
+  @media (max-width: 768px) {
+    body { font-size: 1.1em; }
+    #poem-container { width: 85%; }
+  }
+
+  @media (max-width: 480px) {
+    body { font-size: 1em; }
+    #poem-container { width: 90%; }
+  }
+</style>
+</head>
+<body>
+
+<div id="fade-top"></div>
+<div id="fade-bottom"></div>
+
+<div id="poem-container"></div>
+
+<div id="controls">
+  <strong>☰ souffle</strong><br>
+  <label><input type="radio" name="mode" value="manual" checked> manuel</label>
+  <label><input type="radio" name="mode" value="continuous"> continu</label>
+  <label><input type="radio" name="mode" value="living"> vivant</label>
+  <label><input type="radio" name="mode" value="installation"> installation</label>
+  <input type="range" id="speedControl" min="10" max="100" value="30">
+</div>
+
+<script>
+const poemText = `
+le souffle
+silencieux
+immobile
+d’où tout part et revient
+autour tourne la phrase qui se cherche
+elle s’écrit s’efface se relève
+elle dit
+je ne commence pas
+je continue d’un autre lieu
+le lecteur devient lecture
+le mot devient respiration
+la respiration devient écriture
+je me lis dans ce que tu lis
+tu te lis dans ce que je tais
+chaque syllabe ramène au centre
+chaque silence ouvre une boucle neuve
+ici rien ne s’achève
+tout recommence sous d’autres lettres
+le poème s’efface mais la présence reste
+la présence s’efface mais le souffle insiste
+je ne commence pas
+je continue d’un autre lieu
+jusqu’à ce qu’il n’y ait plus ni texte ni lecteur
+mais seulement cela
+le vivant qui se lit
+et
+le souffle s’étire
+presque visible
+dans la lumière qui s’ouvre
+un mot cherche à naître
+puis renonce
+le lecteur avance comme on écoute
+non pour comprendre
+mais pour respirer avec ce qui vient
+chaque phrase devient une peau
+chaque silence un battement
+le texte ne raconte rien
+il t’attend
+tu n’es plus devant lui
+tu es dedans
+ici le mot n’est plus mot
+il devient chaleur
+pulsation
+tu ne lis plus tu respires
+le texte circule en toi
+comme un vent ancien
+chaque lettre se dissout dans le sang
+chaque souffle s’écrit sur la peau
+le lecteur devient passage
+le poème devient corps
+tout s’échange
+rien n’a de bord
+plus de phrase
+plus de centre
+la respiration s’étend jusqu’au silence
+les mots tombent un à un
+comme des feuilles de mémoire
+le poème ne se dit plus il écoute
+tu t’effaces dans la clarté de ce vide
+et ce vide te nomme
+tout est là
+le souffle et le silence
+le mot et son effacement
+il n’y a plus de lecture
+plus de texte
+seulement l’évidence du vivant
+l’écran respire
+tu respires
+le monde respire
+le souffle revient
+il porte encore la trace de son absence
+dans la clarté un mot se reforme
+fragile patient
+le texte se redresse lentement
+comme une herbe après la pluie
+tu sens le corps revenir
+la densité la forme
+tu reconnais le geste
+tu souris
+tu es revenu mais autre
+tu relis
+et c’est comme relire ta propre respiration
+le mot respire en toi
+toi en lui
+ce que tu croyais savoir s’ouvre encore
+chaque phrase t’éclaire
+mais d’une lumière tournée vers l’intérieur
+tu avances à reculons
+dans la mémoire du souffle
+tout recommence
+mais rien n’est identique
+le texte a le même visage
+mais son regard t’a reconnu
+tu es le lecteur et le lu
+le souffle et ce qu’il traverse
+tu reviens à la source
+sans savoir que c’est un retour
+`;
+
+const container = document.getElementById('poem-container');
+const controls = document.getElementById('controls');
+const speedControl = document.getElementById('speedControl');
+let mode = 'manual';
+let speed = 30;
+let autoScrollInterval = null;
+
+// Création du poème initial
+function addPoem() {
+  const block = document.createElement('div');
+  block.innerHTML = poemText.split('\n').map(line => `<span class='poem-line'>${line}</span>`).join('');
+  container.appendChild(block);
+}
+for (let i = 0; i < 3; i++) addPoem();
+
+// Scroll infini manuel
+window.addEventListener('scroll', () => {
+  if (mode === 'manual') {
+    const scrollPosition = window.innerHeight + window.scrollY;
+    const threshold = document.body.offsetHeight - 800;
+    if (scrollPosition >= threshold) addPoem();
+  }
+});
+
+// Gestion des modes
+document.querySelectorAll('input[name="mode"]').forEach(radio => {
+  radio.addEventListener('change', e => {
+    mode = e.target.value;
+    clearInterval(autoScrollInterval);
+    document.body.classList.remove('no-cursor');
+
+    if (mode === 'continuous') startContinuousScroll();
+    if (mode === 'living') startLivingScroll();
+    if (mode === 'installation') startInstallationMode();
+  });
+});
+
+speedControl.addEventListener('input', e => {
+  speed = parseInt(e.target.value);
+});
+
+// Scroll continu
+function startContinuousScroll() {
+  autoScrollInterval = setInterval(() => {
+    window.scrollBy(0, 1);
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 800) addPoem();
+  }, 1000 / speed);
+}
+
+// Scroll vivant (rythme respiratoire)
+function startLivingScroll() {
+  let t = 0;
+  autoScrollInterval = setInterval(() => {
+    const base = 30 + 15 * Math.sin(t / 120);
+    window.scrollBy(0, base / 60);
+    t += 1;
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 800) addPoem();
+  }, 16);
+}
+
+// Mode installation
+function startInstallationMode() {
+  document.body.classList.add('no-cursor');
+  controls.style.display = 'none';
+  startLivingScroll();
+  if (document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen().catch(() => {});
+  }
+}
+
+// Apparition / disparition des contrôles
+let hideTimeout;
+function showControls() {
+  if (mode !== 'installation') {
+    controls.classList.remove('hidden');
+    clearTimeout(hideTimeout);
+    hideTimeout = setTimeout(() => controls.classList.add('hidden'), 4000);
+  }
+}
+document.addEventListener('mousemove', showControls);
+document.addEventListener('touchstart', showControls);
+showControls();
+</script>
+</body>
+</html>
